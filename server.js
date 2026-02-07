@@ -8,13 +8,13 @@ app.use(express.json());//same as app.use(bodyParser.json()) but for this we nee
 app.get("/", (req, res)=>{
     res.send("welcome!");
 })
-
+//
 const personRoute = require("./Routes/personRoute.js");
 const menuRoute = require("./Routes/menuRoute.js");
 app.use("/person", personRoute);
 app.use("/menu", menuRoute);
 
-
+//yo
 
 app.listen(PORT, ()=>{
     console.log("Server Started!");
