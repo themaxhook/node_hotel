@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
-const mongoUrl =   "mongodb://127.0.0.1:27017/hotels";
+//const mongoUrl =   "mongodb://127.0.0.1:27017/hotels";//local mongoDB database setup
+const mongoUrl = "mongodb+srv://bharatchhabra703:Axehook912@hotels.edxnnzy.mongodb.net/";//online mongoDB setup
 
 mongoose.connect(mongoUrl)
 // , {
