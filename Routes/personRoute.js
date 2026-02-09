@@ -1,7 +1,10 @@
 const express = require("express");
 const Router = express.Router();
 const person = require("../Models/person.js");
-Router.post("/", async (req, res)=>{
+const passport = require("../auth.js");
+Router.use(passport.initialize());
+const localAuthMiddleware =  passport.authenticate('local',{session:false});
+Router.post("/",async (req, res)=>{
     try{//always use try catch bc if any error happen we don't need to send it manually catch automatically send it to catch
         const data = req.body;
         const newPerson = new person(data);//create new person to the database
@@ -14,7 +17,7 @@ Router.post("/", async (req, res)=>{
         res.status(500).json({error:err.message});
     }
 })
-Router.get("/", async (req, res)=>{
+Router.get("/" ,async (req, res)=>{
 try{
 const data = await person.find()
 console.log("Data Fetched Successfully");
@@ -44,7 +47,7 @@ Router.get("/:workType", async (req, res)=>{
     }
 })
 
-Router.put("/:id", async (req, res)=>{
+Router.put("/:id",async (req, res)=>{
     try{
         const personId = req.params.id;
         const wannaDataUpdate = req.body;
