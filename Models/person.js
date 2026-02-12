@@ -58,6 +58,10 @@ personSchema.pre('save', async function() {
         throw err;
     }
 });
+// 🔥 ADD THIS HERE
+personSchema.methods.comparePassword = async function(candidatePassword) {
+    return await bcrypt.compare(candidatePassword, this.password);
+};
 const person = mongoose.model("person", personSchema);//creating a model of our above made schema
 // Schema = rules
 // Model = class created using those rules
